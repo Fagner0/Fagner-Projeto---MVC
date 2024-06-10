@@ -9,5 +9,7 @@ namespace Fagner_Projeto___MVC.Models
         public DbSet<Alimento> Alimentos { get; set; }
 
         public DbSet<Exercicio> Exercicios { get; set; }
+
+        public DbSet<FichaDeTreino> Fichas { get; set; }
     }
 }

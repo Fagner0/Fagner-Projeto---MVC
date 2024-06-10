@@ -8,10 +8,29 @@ namespace Fagner_Projeto___MVC.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required (ErrorMessage = "Obrigatório informar o Nome!")]
         public string Nome { get; set; }
-        [Required(ErrorMessage = "Obrigatório informar o Grupo Muscular!")]
+        
         [Display(Name = "Grupo Muscular")]
-        public String GrupoMuscular { get; set; }
+        public GrupoMuscular Tipo { get; set; }
+
+        public ICollection<FichaDeTreino> Fichas { get; set; }
+
+    }
+        public enum GrupoMuscular
+    {
+        Peito,
+        Tríceps,
+        Bíceps,
+        Dorsal,
+        AnteBraço,
+        Ombro,
+        Trapézio,
+        Abdômen,
+        Panturrilha,
+        Glúteo,
+        Quadríceps,
+        Posterior,
     }
 }
