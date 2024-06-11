@@ -12,17 +12,35 @@
     <header>
         <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-            <li class="nav-item">
+            <ul>
+                 <li class="nav-item">
                 <a class="nav-link btn btn-outline-secondary" asp-area="" asp-controller="Exercicios" asp-action="Index">Exercícios</a>
-            </li>
-            <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a class="nav-link btn btn-outline-secondary" asp-area="" asp-controller="Alimentos" asp-action="Index">Alimentos</a>
-            </li><li class="nav-item">
-                    <a class="nav-link btn btn-outline-secondary" asp-area="" asp-controller="Fichas" asp-action="Index">Fichas de Treino</a>
-            </li>
                 </li><li class="nav-item">
+                    <a class="nav-link btn btn-outline-secondary" asp-area="" asp-controller="Fichas" asp-action="Index">Fichas de Treino</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link btn btn-outline-secondary" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuários</a>
                 </li>
+            </ul>
+            <ul class="navbar-nav">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            Olá, @User.Identity.Name <a class="nav-link text-white" asp-area="" asp-controller="Usuarios" asp-action="Logout">Sair</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Usuarios" asp-action="Login">Login</a>
+                        </li>
+                    }
+
+             </ul>
         </div>
         </div>
         <nav class="navbar navbar-dark bg-dark">

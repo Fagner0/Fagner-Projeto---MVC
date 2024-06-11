@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fagner_Projeto___MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fagner_Projeto___MVC.Controllers
 {
+    [Authorize(Roles ="Personal")]
     public class FichasController : Controller
     {
         private readonly AppDbContext _context;

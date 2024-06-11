@@ -1,9 +1,11 @@
 ﻿using Fagner_Projeto___MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fagner_Projeto___MVC.Controllers
 {
+    [Authorize(Roles ="Personal")]
     public class ExerciciosController : Controller
     {
         private readonly AppDbContext _context;
