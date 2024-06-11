@@ -11,5 +11,7 @@ namespace Fagner_Projeto___MVC.Models
         public DbSet<Exercicio> Exercicios { get; set; }
 
         public DbSet<FichaDeTreino> Fichas { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
