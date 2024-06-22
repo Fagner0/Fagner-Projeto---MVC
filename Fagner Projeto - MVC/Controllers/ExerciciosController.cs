@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Fagner_Projeto___MVC.Controllers
 {
-    [Authorize(Roles ="Personal")]
+    
     public class ExerciciosController : Controller
     {
         private readonly AppDbContext _context;

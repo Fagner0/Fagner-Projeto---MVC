@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Fagner_Projeto___MVC.Controllers
 {
-    [Authorize]
+    
     public class UsuariosController : Controller
     {
         private readonly AppDbContext _context;

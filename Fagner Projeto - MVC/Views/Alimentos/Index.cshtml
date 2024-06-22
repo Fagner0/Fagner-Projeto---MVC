@@ -18,6 +18,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Calorias)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carboidratos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proteinas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gorduras)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +38,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Calorias)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Carboidratos)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Proteinas)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Gorduras)
             </td>
             <td>
                 <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

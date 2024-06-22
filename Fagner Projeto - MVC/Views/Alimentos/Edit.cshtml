@@ -24,7 +24,22 @@
                 <span asp-validation-for="Calorias" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-secondary" />
+                <label asp-for="Carboidratos" class="control-label"></label>
+                <input asp-for="Carboidratos" class="form-control" />
+                <span asp-validation-for="Carboidratos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proteinas" class="control-label"></label>
+                <input asp-for="Proteinas" class="form-control" />
+                <span asp-validation-for="Proteinas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gorduras" class="control-label"></label>
+                <input asp-for="Gorduras" class="form-control" />
+                <span asp-validation-for="Gorduras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-secondary" /> |
                 <a asp-action="Index" class="btn btn-info">Voltar</a>
             </div>
         </form>

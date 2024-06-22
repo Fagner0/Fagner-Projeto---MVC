@@ -15,6 +15,19 @@ namespace Fagner_Projeto___MVC.Models
         [Required(ErrorMessage = "Obrigatório informar as Calorias")]
         public string Calorias { get; set; }
 
+        [Required(ErrorMessage = "Obrigatório informar os carboidratos!")]
+        public string Carboidratos { get; set; }
+
+        [Required(ErrorMessage = "Obrigatório informar as proteínas!")]
+        public string Proteinas { get; set; }
+
+        [Required(ErrorMessage = "Obrigatório informar as Gorduras!")]
+        public string Gorduras { get; set; }
+
+        public ICollection<Plano> Planos { get; set; }
 
     }
+
+
 }
+

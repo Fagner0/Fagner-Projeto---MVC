@@ -6,28 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fagner_Projeto___MVC.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Fagner_Projeto___MVC.Controllers
 {
-    
-    public class FichasController : Controller
+    public class PlanosController : Controller
     {
         private readonly AppDbContext _context;
 
-        public FichasController(AppDbContext context)
+        public PlanosController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: Fichas
+        // GET: Planos
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Fichas.Include(f => f.Exercicio);
+            var appDbContext = _context.Plano.Include(p => p.alimento);
             return View(await appDbContext.ToListAsync());
         }
 
-        // GET: Fichas/Details/5
+        // GET: Planos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +33,42 @@ namespace Fagner_Projeto___MVC.Controllers
                 return NotFound();
             }
 
-            var fichaDeTreino = await _context.Fichas
-                .Include(f => f.Exercicio)
+            var plano = await _context.Plano
+                .Include(p => p.alimento)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (fichaDeTreino == null)
+            if (plano == null)
             {
                 return NotFound();
             }
 
-            return View(fichaDeTreino);
+            return View(plano);
         }
 
-        // GET: Fichas/Create
+        // GET: Planos/Create
         public IActionResult Create()
         {
-            ViewData["ExercicioId"] = new SelectList(_context.Exercicios, "Id", "Nome");
+            ViewData["AlimentoId"] = new SelectList(_context.Alimentos, "Id", "Nome");
             return View();
         }
 
-        // POST: Fichas/Create
+        // POST: Planos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ExercicioId,Repetiçoes,NumeroSerie,TempoDescanso")] FichaDeTreino fichaDeTreino)
+        public async Task<IActionResult> Create([Bind("Id,AlimentoId,Refeição,Hora,Porção")] Plano plano)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(fichaDeTreino);
+                _context.Add(plano);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExercicioId"] = new SelectList(_context.Exercicios, "Id", "Nome", fichaDeTreino.ExercicioId);
-            return View(fichaDeTreino);
+            ViewData["AlimentoId"] = new SelectList(_context.Alimentos, "Id", "Nome", plano.AlimentoId);
+            return View(plano);
         }
 
-        // GET: Fichas/Edit/5
+        // GET: Planos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +76,23 @@ namespace Fagner_Projeto___MVC.Controllers
                 return NotFound();
             }
 
-            var fichaDeTreino = await _context.Fichas.FindAsync(id);
-            if (fichaDeTreino == null)
+            var plano = await _context.Plano.FindAsync(id);
+            if (plano == null)
             {
                 return NotFound();
             }
-            ViewData["ExercicioId"] = new SelectList(_context.Exercicios, "Id", "Nome", fichaDeTreino.ExercicioId);
-            return View(fichaDeTreino);
+            ViewData["AlimentoId"] = new SelectList(_context.Alimentos, "Id", "Nome", plano.AlimentoId);
+            return View(plano);
         }
 
-        // POST: Fichas/Edit/5
+        // POST: Planos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ExercicioId,Repetiçoes,NumeroSerie,TempoDescanso")] FichaDeTreino fichaDeTreino)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AlimentoId,Refeição,Hora,Porção")] Plano plano)
         {
-            if (id != fichaDeTreino.Id)
+            if (id != plano.Id)
             {
                 return NotFound();
             }
@@ -103,12 +101,12 @@ namespace Fagner_Projeto___MVC.Controllers
             {
                 try
                 {
-                    _context.Update(fichaDeTreino);
+                    _context.Update(plano);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FichaDeTreinoExists(fichaDeTreino.Id))
+                    if (!PlanoExists(plano.Id))
                     {
                         return NotFound();
                     }
@@ -119,11 +117,11 @@ namespace Fagner_Projeto___MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExercicioId"] = new SelectList(_context.Exercicios, "Id", "Nome", fichaDeTreino.ExercicioId);
-            return View(fichaDeTreino);
+            ViewData["AlimentoId"] = new SelectList(_context.Alimentos, "Id", "Nome", plano.AlimentoId);
+            return View(plano);
         }
 
-        // GET: Fichas/Delete/5
+        // GET: Planos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,35 +129,35 @@ namespace Fagner_Projeto___MVC.Controllers
                 return NotFound();
             }
 
-            var fichaDeTreino = await _context.Fichas
-                .Include(f => f.Exercicio)
+            var plano = await _context.Plano
+                .Include(p => p.alimento)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (fichaDeTreino == null)
+            if (plano == null)
             {
                 return NotFound();
             }
 
-            return View(fichaDeTreino);
+            return View(plano);
         }
 
-        // POST: Fichas/Delete/5
+        // POST: Planos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var fichaDeTreino = await _context.Fichas.FindAsync(id);
-            if (fichaDeTreino != null)
+            var plano = await _context.Plano.FindAsync(id);
+            if (plano != null)
             {
-                _context.Fichas.Remove(fichaDeTreino);
+                _context.Plano.Remove(plano);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FichaDeTreinoExists(int id)
+        private bool PlanoExists(int id)
         {
-            return _context.Fichas.Any(e => e.Id == id);
+            return _context.Plano.Any(e => e.Id == id);
         }
     }
 }

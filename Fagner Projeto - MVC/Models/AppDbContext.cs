@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Fagner_Projeto___MVC.Models;
 
 namespace Fagner_Projeto___MVC.Models
 {
@@ -13,5 +14,6 @@ namespace Fagner_Projeto___MVC.Models
         public DbSet<FichaDeTreino> Fichas { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Fagner_Projeto___MVC.Models.Plano> Plano { get; set; }
     }
 }
